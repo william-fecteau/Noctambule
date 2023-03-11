@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 962903483767525819}
   - component: {fileID: 5434752819821268624}
   - component: {fileID: 4362937879729947327}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ Animator:
   m_GameObject: {fileID: 962903483767525820}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0a333b4ba23a2bb41991a7deda1fb18e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0d3cc88407fcd3147a85a338f93421a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -94,7 +94,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 69
   m_Sprite: {fileID: 457754507, guid: 984a19b6dbd9c8849873d0b55486332a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 962903483910479525}
   - component: {fileID: 962903483910479526}
   - component: {fileID: 962903483910479527}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Moth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
