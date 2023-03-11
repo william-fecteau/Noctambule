@@ -4,28 +4,71 @@ using UnityEngine;
 
 public class NetHitBox : MonoBehaviour
 {
-    [SerializeField] private float netCooldown = 1f;
-    private float netTimer = 0f;
-    private bool canNet = true;
-    private bool netActivated = false;
+    [SerializeField] private float netCooldownSec = 1.0f;
+    [SerializeField] private float netCatchPeriodSec = 0.2f;
+    [SerializeField] private LayerMask mothlayerMasks;
+
+    private float netCooldownTimer = 0.0f;
+    private float netCatchPeriodTimer = 0.0f;
+    private bool isNetActivated = false;
+    private bool isNetInCooldown = false;
+    private PlayerController playerController;
+
+    private const int MAX_MOTH_CATCH = 69;
+
+    private void Start()
+    {
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+    }
 
     private void Update() {
-        if (canNet == false) {
-            netTimer += Time.deltaTime;
-            if (netCooldown >= netTimer) {
-                canNet = true;
-                netActivated = false;
-                netTimer = 0f;
+        if (isNetActivated)
+        {
+            CatchMothsInReach();
+
+            netCatchPeriodTimer += Time.deltaTime;
+            if (netCatchPeriodTimer > netCatchPeriodSec)
+            {
+                isNetActivated = false;
+                isNetInCooldown = true;
+                netCooldownTimer = 0.0f;
             }
-        } else if (Input.GetKeyDown(KeyCode.Q)) {
-            netActivated = true;
+        }
+        else if (isNetInCooldown)
+        {
+            netCooldownTimer += Time.deltaTime;
+            if (netCooldownTimer > netCooldownSec)
+            {
+                isNetInCooldown = false;
+                isNetActivated = false;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            isNetActivated = true;
+            netCatchPeriodTimer = 0.0f;
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+
+    private void CatchMothsInReach()
     {
-        if (other.gameObject.layer == 3 && netActivated) {
-            Debug.Log("Moth hit");
-            canNet = false;
+        Vector2 size = new Vector2(2, 2);
+        float distance = 2.0f;
+        float angle = 0.0f;
+        Vector2 direction = playerController.GetNormalizedDirection();
+        RaycastHit2D[] results = new RaycastHit2D[MAX_MOTH_CATCH];
+        if (Physics2D.BoxCastNonAlloc(transform.position, size, angle, direction, results, distance, mothlayerMasks) > 0)
+        {
+            if (results == null || results.Length == 0) return;
+
+            foreach (RaycastHit2D raycastHit in results) {
+                if (raycastHit.transform == null) continue;
+
+                if (raycastHit.transform.TryGetComponent<BaseMoth>(out BaseMoth baseMoth))
+                {
+                    Destroy(raycastHit.collider.gameObject);
+                }
+            }
         }
     }
 }
