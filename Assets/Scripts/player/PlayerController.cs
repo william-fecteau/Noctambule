@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private float dashingTimer = 0f;
     private float dashingCooldownTimer = 0f;
     private Rigidbody2D rigidbody2d;
+    private Vector2 movementInput;
 
     void Start()
     {
@@ -22,13 +23,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // movement direction
-        Vector2 movement = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.W)) movement.y = 1;
-        if (Input.GetKey(KeyCode.S)) movement.y = -1;
-        if (Input.GetKey(KeyCode.A)) movement.x = -1;
-        if (Input.GetKey(KeyCode.D)) movement.x = 1;
-        movement = movement.normalized;
+        // movementInput direction
+        movementInput = new Vector2(0, 0);
+        if (Input.GetKey(KeyCode.W)) movementInput.y = 1;
+        if (Input.GetKey(KeyCode.S)) movementInput.y = -1;
+        if (Input.GetKey(KeyCode.A)) movementInput.x = -1;
+        if (Input.GetKey(KeyCode.D)) movementInput.x = 1;
+        movementInput = movementInput.normalized;
 
         // dash
         if (Input.GetKey(KeyCode.Space) && canDash)
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
             canDash = false;
         }
         if (isDashing) {
-            movement *= dashingPower;
+            movementInput *= dashingPower;
             dashingTimer += Time.deltaTime;
             if (dashingTimer >= dashingTime) {
                 isDashing = false;
@@ -52,8 +53,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Move
-        movement = movement * speed * Time.deltaTime;
-        rigidbody2d.MovePosition(rigidbody2d.position + movement);
+        movementInput = movementInput * speed * Time.deltaTime;
+        rigidbody2d.MovePosition(rigidbody2d.position + movementInput);
 
 
         // Rotate towards mouse
@@ -61,4 +62,6 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = (mouseScreenPosition  - (Vector2) transform.position).normalized;
         transform.up = direction;
     }
+
+    public Vector2 GetNormalizedDirection() => movementInput;
 }
