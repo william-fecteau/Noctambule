@@ -1151,6 +1151,8 @@ GameObject:
   - component: {fileID: 1698834402}
   - component: {fileID: 1698834404}
   - component: {fileID: 1698834403}
+  - component: {fileID: 1698834405}
+  - component: {fileID: 1698834406}
   m_Layer: 0
   m_Name: Tilemap_background
   m_TagString: Untagged
@@ -31232,6 +31234,48 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1698834405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698834401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdc56c89f49a894694227a504c4ff26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playlist:
+  - {fileID: 8300000, guid: 44f02158f7d104140b8857afc275f70b, type: 3}
+  - {fileID: 8300000, guid: bd7f4c7426842a04cb458d2f832b0fe5, type: 3}
+  - {fileID: 8300000, guid: 9011abaf3087686498ed685759b940e9, type: 3}
+  - {fileID: 8300000, guid: 1c6c3b442c76fec4994eebb1e4698120, type: 3}
+  - {fileID: 8300000, guid: 8d107d60e8918174ab3e00d98541145d, type: 3}
+  - {fileID: 8300000, guid: 1d84c1a9d59205e4ea0795b97630ba1c, type: 3}
+  - {fileID: 8300000, guid: 1665940e0da6af440adcddf9e23f9e00, type: 3}
+  - {fileID: 8300000, guid: a1a663e118be1cd4daca1dd3b1809406, type: 3}
+  - {fileID: 8300000, guid: 413a7f789d1c9f6448ae25dbd89ea2ca, type: 3}
+  randomClip: {fileID: 8300000, guid: 3b309ed5f6aff3c4eba7b600f8396aa6, type: 3}
+  currentSong: {fileID: 0}
+  volume: 0.6
+  tilemap: {fileID: 1698834406}
+--- !u!19719996 &1698834406
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698834401}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
 --- !u!1 &1736753220
 GameObject:
   m_ObjectHideFlags: 0
@@ -33885,6 +33929,14 @@ PrefabInstance:
     - target: {fileID: 2602278957138031262, guid: ad1d1f09a0c589648b1da4f23ad51b06, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602278957138031262, guid: ad1d1f09a0c589648b1da4f23ad51b06, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602278958000460891, guid: ad1d1f09a0c589648b1da4f23ad51b06, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad1d1f09a0c589648b1da4f23ad51b06, type: 3}
