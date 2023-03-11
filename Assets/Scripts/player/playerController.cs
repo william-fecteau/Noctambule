@@ -51,10 +51,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
         // Move
         movement = movement * speed * Time.deltaTime;
         rigidbody2d.MovePosition(rigidbody2d.position + movement);
+
 
         // Rotate towards mouse
         Vector2 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
