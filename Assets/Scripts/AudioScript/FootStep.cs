@@ -25,8 +25,6 @@ public class FootStep : MonoBehaviour
         {
             if (!currentSong.isPlaying)
             {
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
                 randomClip = playlist[Random.Range(0, playlist.Length - 1)];
                 currentSong.clip = randomClip;
                 currentSong.loop = false;
@@ -42,11 +40,8 @@ public class FootStep : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("ENTER@@@@");
-        Debug.Log(collision.tag);
         if (collision.tag == "Player")
         {
-            Debug.Log("ENTER");
             isPlayerOnButton = true;
         }
     }
@@ -55,7 +50,6 @@ public class FootStep : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Debug.Log("EXIT");
             isPlayerOnButton = false;
         }
     }
