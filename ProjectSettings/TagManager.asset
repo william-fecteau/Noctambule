@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TileMapCollision
   layers:
   - Default
   - TransparentFX
@@ -11,8 +12,11 @@ TagManager:
   - player
   - Water
   - UI
+  - Player
+  - Ground
   - 
   - shop
+  - 
   - 
   - 
   - 
@@ -40,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2137284735
+    locked: 0
+  - name: Ground
+    uniqueID: 1235719061
     locked: 0
