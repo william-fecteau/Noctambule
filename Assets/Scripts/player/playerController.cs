@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    [SerializeField] private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidbody2d;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -28,6 +28,6 @@ public class PlayerController : MonoBehaviour
         movementVector.y = inputVector.y;
         movementVector = movementVector * speed * Time.deltaTime;
 
-        rigidbody.MovePosition(rigidbody.position + movementVector);
+        rigidbody2d.MovePosition(rigidbody2d.position + movementVector);
     }
 }
