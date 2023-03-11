@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
 
         inputVector = inputVector.normalized;
 
-
         Vector2 movementVector = Vector2.zero;
         movementVector.x = inputVector.x;
         movementVector.y = inputVector.y;
