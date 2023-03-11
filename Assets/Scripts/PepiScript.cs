@@ -5,6 +5,7 @@ using UnityEngine;
 public class PepiScript : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    private float angle = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,11 @@ public class PepiScript : MonoBehaviour
         }
         movement = movement.normalized;
 
+        Vector2 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        Vector2 direction = (mouseScreenPosition  - (Vector2) transform.position).normalized;
+
+        transform.up = direction;
         transform.position += (Vector3)movement * speed * Time.deltaTime;
     }
 }
