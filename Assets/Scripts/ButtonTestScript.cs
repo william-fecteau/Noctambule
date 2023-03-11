@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonTestScript : MonoBehaviour
 {
+    //input the string in unity
     public string newGameScene;
 
     // Start is called before the first frame update
@@ -21,6 +22,5 @@ public class ButtonTestScript : MonoBehaviour
     {
         Debug.Log(newGameScene);
         SceneManager.LoadScene(newGameScene);
-        Debug.Log("You have clicked the button!");
     }
 }
