@@ -4,104 +4,151 @@ using UnityEngine;
 
 public class Boid : MonoBehaviour
 {
-    [SerializeField] public float speed = 1f;
-    public List<Boid> boidsInScene;
-    [SerializeField] public Vector2 direction = new Vector2(1,1);
-    //private Rigidbody2D rigidbody2d;
-    [SerializeField] public float avoidOtherStrength = 1f; //factor by which boid will try to avoid each other. Higher it is, higher the turn rate to avoid other.
-    [SerializeField] public float collisionAvoidCheckDistance = 10f; //distance of nearby boids to avoid collision     
-	 // Start is called before the first frame update
-	[SerializeField] public float moveToCenterStrength = 2f; //factor by which boid will try toward center Higher it is, higher the turn rate to move to the center
-	[SerializeField] public float localBoidsDistance = 5f; //effective distance to calculate the center
-	[SerializeField] public float alignWithOthersStrength = 10f; //factor determining turn rate to align with other boids
-	[SerializeField] public float alignmentCheckDistance = 100f; //distance up to which alignment of boids will be checked. Boids with greater distance than this will be ignored
+    [SerializeField] public float speed = 5f;
+    [SerializeField] public float turnSpeed = 10f;
+    [SerializeField] public float maxDistance = 10f;
+    [SerializeField] public float maxAngle = 120f;
+    [SerializeField] public float cohesionWeight = 0.3f;
+    [SerializeField] public float alignmentWeight = 10f;
+    [SerializeField] public float separationWeight = 10f;
 
-    void Start()
+    public Vector2 cohesionVector;
+    public Vector2 alignmentVector;
+    public Vector2 separationVector;
+    public List<Boid> Boids = new List<Boid>();
+	public Vector2 movementVector;
+
+    public void Start()
     {
-        //rigidbody2d = new Rigidbody2D();
-		boidsInScene = new List<Boid>();
-		boidsInScene.AddRange((Boid[])GameObject.FindObjectsOfType(typeof(Boid)));
+        // Find all the boid moths in the scene
+        Boids.AddRange(FindObjectsOfType<Boid>());
+        Boids.Remove(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-		AlignWithOthers();
-		MoveToCenter();
-		AvoidOtherBoids();
-		transform.Translate(direction * (speed * Time.deltaTime));
-		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        // Calculate the cohesion, alignment, and separation vectors for the boid moth
+        cohesionVector = CalculateCohesionVector();
+        alignmentVector = CalculateAlignmentVector();
+        separationVector = CalculateSeparationVector();
+
+        // Combine the vectors to get the final movement vector for the boid moth
+        movementVector = (cohesionVector * cohesionWeight) + (alignmentVector * alignmentWeight) + (separationVector * separationWeight);
+
+        // Rotate the boid moth towards the direction it's moving in
+        if (movementVector.magnitude > 0)
+        {
+            float angle = Mathf.Atan2(movementVector.y, movementVector.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), turnSpeed * Time.deltaTime);
+        }
     }
 
-    void MoveToCenter(){
-
-    	Vector2 positionSum = transform.position;//calculate sum of position of nearby boids and get count of boid
-    	int count = 0;
-
-    	foreach (Boid boid in boidsInScene)
-    	{
-    		float distance = Vector2.Distance(boid.transform.position, transform.position);
-    		if (distance <= localBoidsDistance){
-    			positionSum += (Vector2)boid.transform.position;
-    			count++;
-    		}
-    	}
-
-    	if (count == 0){
-    		return;
-    	}
-
-    	//get average position of boids
-    	Vector2 positionAverage = positionSum / count;
-    	positionAverage = positionAverage.normalized;
-    	Vector2 faceDirection = (positionAverage - (Vector2) transform.position).normalized;
-
-    	//move boid toward center
-    	float deltaTimeStrength = moveToCenterStrength * Time.deltaTime;
-    	direction=direction+deltaTimeStrength*faceDirection/(deltaTimeStrength+1);
-    	direction = direction.normalized;
+    public void FixedUpdate()
+    {
+        // Move the boid moth in the direction of the movement vector
+        GetComponent<Rigidbody2D>().velocity = movementVector.normalized * speed;
     }
-	
-	void AvoidOtherBoids(){
-		Vector2 faceAwayDirection = Vector2.zero;//this is a vector that will hold direction away from near boid so we can steer to it to avoid the collision.
 
-		//we need to iterate through all boid
-		foreach (Boid boid in boidsInScene){
-			float distance = Vector2.Distance(boid.transform.position, transform.position);
+    public Vector2 CalculateCohesionVector()
+    {
+        // Calculate the center of mass of all the boid moths
+        Vector2 centerOfMass = Vector2.zero;
+        foreach (Boid Boid in Boids)
+        {
+            centerOfMass += (Vector2) Boid.transform.position;
+        }
+        centerOfMass /= Boids.Count;
 
-			//if the distance is within range calculate away vector from it and subtract from away direction.
-			if (distance <= collisionAvoidCheckDistance){
-				faceAwayDirection =faceAwayDirection+ (Vector2)(transform.position - boid.transform.position);
-			}
-		}
+        // Calculate the vector towards the center of mass
+        Vector2 cohesionVector = centerOfMass - (Vector2) transform.position;
 
-		faceAwayDirection = faceAwayDirection.normalized;//we need to normalize it so we are only getting direction
+        // Normalize the vector and scale it by the distance to the center of mass
+        cohesionVector.Normalize();
+        cohesionVector *= maxDistance;
 
-		direction=direction+avoidOtherStrength*faceAwayDirection/(avoidOtherStrength +1);
-		direction = direction.normalized;
-	}
+        // Only apply the vector if it's within the maximum angle
+        if (Vector2.Angle(transform.right, cohesionVector) > maxAngle)
+        {
+            cohesionVector = Vector2.zero;
+        }
 
-	void AlignWithOthers(){
-		//we will need to find average direction of all nearby boids
-		Vector2 directionSum = Vector3.zero;
-		int count = 0;
+        return cohesionVector;
+    }
 
-		foreach (var boid in boidsInScene){
-			float distance = Vector2.Distance(boid.transform.position, transform.position);
-			if (distance <= alignmentCheckDistance){
-				directionSum += boid.direction;
-				count++;
-			}
-		}
+    public Vector2 CalculateAlignmentVector()
+    {
+        // Calculate the average velocity of all the boid moths
+        Vector2 averageVelocity = Vector2.zero;
+        foreach (Boid Boid in Boids)
+        {
+            averageVelocity += Boid.GetComponent<Rigidbody2D>().velocity;
+        }
+        averageVelocity /= Boids.Count;
 
-		Vector2 directionAverage = directionSum / count;
-		directionAverage = directionAverage.normalized;
+        // Only apply the vector if it's within the maximum angle
+        if (Vector2.Angle(transform.right, averageVelocity) > maxAngle)
+        {
+            averageVelocity = Vector2.zero;
+        }
 
-		//now add this direction to direction vector to steer towards it
-		float deltaTimeStrength = alignWithOthersStrength * Time.deltaTime;
-		direction=direction+deltaTimeStrength*directionAverage/(deltaTimeStrength+1);
-		direction = direction.normalized;
+        return averageVelocity;
+    }
+	private Vector2 CalculateSeparationVector()
+{
+    Vector2 separationVector = Vector2.zero;
 
-	}
+    foreach (Boid boidMoth in Boids)
+    {
+        if (boidMoth != this)
+        {
+            // Calculate the vector away from the other boid moth
+            Vector2 awayVector = (Vector2)transform.position - (Vector2)boidMoth.transform.position;
+
+            // Only apply the vector if it's within the maximum distance
+            if (awayVector.magnitude < maxDistance)
+            {
+                bool shouldAvoid = false;
+
+                // Check if there are any tilemap colliders between this boid moth and the other boid moth
+                RaycastHit2D[] hits = Physics2D.RaycastAll(boidMoth.transform.position, awayVector.normalized, awayVector.magnitude, 2);
+                foreach (RaycastHit2D hit in hits)
+                {
+                    if (hit.collider.isTrigger || hit.collider.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
+                    {
+                        // Ignore trigger colliders and objects with Ignore Raycast layer
+                        continue;
+                    }
+
+                    shouldAvoid = true;
+					
+                    break;
+                }
+
+                if (shouldAvoid)
+                {
+                    // Add the vector away from the other boid moth to the separation vector
+                    separationVector += awayVector;
+                }
+            }
+        }
+    }
+
+    // Only apply the vector if it's not zero
+    if (separationVector.magnitude > 0)
+    {
+        separationVector /= Boids.Count - 1;
+
+        // Normalize the vector and scale it by the maximum distance
+        separationVector.Normalize();
+        separationVector *= maxDistance;
+
+        // Only apply the vector if it's within the maximum angle
+        if (Vector2.Angle(transform.right, separationVector) > maxAngle)
+        {
+            separationVector = Vector2.zero;
+        }
+    }
+
+    return separationVector;
+}
 }

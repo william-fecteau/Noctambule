@@ -268,7 +268,11 @@ PrefabInstance:
       objectReference: {fileID: 7249860786279818537, guid: f1b7e928de4211042b2ff756ec3fb2b0, type: 3}
     - target: {fileID: 6410753008825375169, guid: 5528864e4269bb24fb02d0e6165ae643, type: 3}
       propertyPath: speed
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410753008825375169, guid: 5528864e4269bb24fb02d0e6165ae643, type: 3}
+      propertyPath: nbBoidSpawn
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6410753008825375169, guid: 5528864e4269bb24fb02d0e6165ae643, type: 3}
       propertyPath: avoidOtherStrength
@@ -276,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6410753008825375169, guid: 5528864e4269bb24fb02d0e6165ae643, type: 3}
       propertyPath: localBoidsDistance
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6410753008825375169, guid: 5528864e4269bb24fb02d0e6165ae643, type: 3}
       propertyPath: moveToCenterStrength
@@ -284,15 +288,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6410753008825375169, guid: 5528864e4269bb24fb02d0e6165ae643, type: 3}
       propertyPath: alignmentCheckDistance
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6410753008825375169, guid: 5528864e4269bb24fb02d0e6165ae643, type: 3}
       propertyPath: alignWithOthersStrength
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6410753008825375169, guid: 5528864e4269bb24fb02d0e6165ae643, type: 3}
       propertyPath: collisionAvoidCheckDistance
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5528864e4269bb24fb02d0e6165ae643, type: 3}
