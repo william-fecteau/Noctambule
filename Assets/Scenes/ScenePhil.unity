@@ -21709,11 +21709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09664d6aa8b9f41488137c3af0f23087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  speed: 50
-=======
   speed: 5
->>>>>>> dev
   dashingTime: 0.2
   dashingCooldown: 1
   dashingPower: 5
