@@ -1734,6 +1734,7 @@ GameObject:
   - component: {fileID: 1556450223}
   - component: {fileID: 1556450222}
   - component: {fileID: 1556450225}
+  - component: {fileID: 1556450226}
   m_Layer: 0
   m_Name: Tilemap_button
   m_TagString: Button
@@ -1935,6 +1936,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b887f1fa592b05643aff6dab0037e2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1556450226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556450220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdc56c89f49a894694227a504c4ff26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playlist:
+  - {fileID: 8300000, guid: ef07629e6baf8764a9a21536d2ef2ea3, type: 3}
+  - {fileID: 8300000, guid: 0e8821b3acdd52b4b9e5abdaade211b9, type: 3}
+  - {fileID: 8300000, guid: 0641041b89778954291941582694ce01, type: 3}
+  - {fileID: 8300000, guid: 5fe31794f5d62444bae174f9267175ab, type: 3}
+  - {fileID: 8300000, guid: 16f1bd8b640e35549b84556b851e85a3, type: 3}
+  randomClip: {fileID: 0}
+  currentSong: {fileID: 0}
 --- !u!1 &1680245505
 GameObject:
   m_ObjectHideFlags: 0
@@ -21624,7 +21645,7 @@ GameObject:
   - component: {fileID: 1764737618}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21688,7 +21709,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09664d6aa8b9f41488137c3af0f23087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   speed: 50
+=======
+  speed: 5
+>>>>>>> dev
   dashingTime: 0.2
   dashingCooldown: 1
   dashingPower: 5
