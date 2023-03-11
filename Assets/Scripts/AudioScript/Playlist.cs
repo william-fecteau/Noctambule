@@ -48,6 +48,7 @@ public class Playlist : MonoBehaviour
             randomClip = playlist[Random.Range(0, playlist.Length - 1)];
             currentSong.Play();
             currentSong.loop = false;
+            currentSong.loop = false;
         }
     }
 }
