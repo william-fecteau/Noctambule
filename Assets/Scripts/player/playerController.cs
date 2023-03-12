@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // movementInput direction
         movementInput = new Vector2(0, 0);
@@ -54,23 +54,21 @@ public class PlayerController : MonoBehaviour
         }
         if (isDashing) {
             movementInput *= dashingPower;
-            dashingTimer += Time.deltaTime;
+            dashingTimer += Time.fixedDeltaTime;
             if (dashingTimer >= dashingTime) {
                 isDashing = false;
                 dashingTimer = 0f;
             }
         } else if (!canDash) {
-            dashingCooldownTimer += Time.deltaTime;
+            dashingCooldownTimer += Time.fixedDeltaTime;
             if (dashingCooldownTimer >= dashingCooldown) {
                 canDash = true;
                 dashingCooldownTimer = 0f;
             }
         }
-
         // Move
-        movementInput = movementInput * speed * Time.deltaTime;
+        movementInput = movementInput * speed * Time.fixedDeltaTime;
         rigidbody2d.MovePosition(rigidbody2d.position + movementInput);
-
 
         // Rotate towards mouse
         float camOffsetX = Camera.main.pixelWidth/2;
