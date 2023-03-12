@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    PlayerWallet playerWallet;
     [SerializeField] private float speed = 5f;
     private Rigidbody2D rigidbody2d;
 
     void Start()
     {
+        playerWallet = GetComponent<PlayerWallet>();
+        playerWallet.AddMoney(100);
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
