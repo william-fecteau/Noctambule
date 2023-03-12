@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TileMapWIll.unity
     guid: 7412f9743b805e3458f5a11174a35204
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
-    guid: 6947868a8afa5474d8e0ac8496aa8a7a
+    path: Assets/Scenes/creditstwo.unity
+    guid: 4088e7bbd20b47d41940e3e115349261
   m_configObjects: {}
