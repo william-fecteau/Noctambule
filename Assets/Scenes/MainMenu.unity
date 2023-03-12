@@ -584,7 +584,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 962dd94b17a894241b83d46400539685, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f620406c61bf7a342910db0eb3b5f8c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8901283b81e62bb47a1d98357c894d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainClip: {fileID: 8300000, guid: a30c7163aaf1d89499d53a1ec07a1818, type: 3}
+  mainClip: {fileID: 8300000, guid: 17b93024f52a9ce479658c0df19edf89, type: 3}
   currentSong: {fileID: 0}
   volume: 1
 --- !u!114 &2136938189
