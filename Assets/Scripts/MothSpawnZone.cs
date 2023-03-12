@@ -58,7 +58,7 @@ public class MothSpawnZone : MonoBehaviour
         }
     }
 
-    private bool ShouldSpawn(float rate) => Random.Range(0, 1) <= rate;
+    private bool ShouldSpawn(float rate) => Random.Range(0, 1) < rate;
 
     private void Spawn(GameObject prefab)
     {

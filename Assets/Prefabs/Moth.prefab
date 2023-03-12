@@ -157,6 +157,8 @@ MonoBehaviour:
   maxSecBeforeDirectionChange: 1
   minSpeed: 0.8
   maxSpeed: 2
+  itemNeededToCatch: 
+  money: 1
 --- !u!61 &962903483910479526
 BoxCollider2D:
   m_ObjectHideFlags: 0
