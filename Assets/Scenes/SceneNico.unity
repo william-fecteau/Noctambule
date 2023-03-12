@@ -392,7 +392,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   netCooldownSec: 1
   netCatchPeriodSec: 0.2
-  mothLayer: 3
+  mothlayerMasks:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1387983492
 GameObject:
   m_ObjectHideFlags: 0
