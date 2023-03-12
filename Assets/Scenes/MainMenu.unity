@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73559d21478b7b4ba37361add2772b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8300000, guid: f57e5b06caf2105449e4a0e665fc0a31, type: 3}
+  sound: {fileID: 8300000, guid: fe5e8b391e06d1047845734d03c88161, type: 3}
   volume: 1
 --- !u!1 &1723145491
 GameObject:
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8901283b81e62bb47a1d98357c894d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainClip: {fileID: 8300000, guid: a30c7163aaf1d89499d53a1ec07a1818, type: 3}
+  mainClip: {fileID: 8300000, guid: d943d410dbbd96e44be90840fd45c42d, type: 3}
   currentSong: {fileID: 0}
   volume: 1
 --- !u!114 &2136938189
