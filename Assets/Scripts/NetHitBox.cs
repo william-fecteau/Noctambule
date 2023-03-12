@@ -89,7 +89,6 @@ public class NetHitBox : MonoBehaviour
 
                 if (raycastHit.transform.TryGetComponent<BaseMoth>(out BaseMoth baseMoth))
                 {
-                    
                     catchSound.clip = clips[0];
                     catchSound.loop = false;
                     catchSound.volume = volumeSFX;
