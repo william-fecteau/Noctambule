@@ -8,6 +8,7 @@ public class NetHitBox : MonoBehaviour
     [SerializeField] private float netCatchPeriodSec = 0.2f;
     [SerializeField] private LayerMask mothlayerMasks;
     [SerializeField] private float volumeSFX = 1;
+    [SerializeField] private GameObject playerNet;
 
     //0 is catch
     //1-4 is swing
@@ -43,6 +44,7 @@ public class NetHitBox : MonoBehaviour
             if (netCatchPeriodTimer > netCatchPeriodSec)
             {
                 isNetActivated = false;
+                playerNet.SetActive(false);
                 isNetInCooldown = true;
                 netCooldownTimer = 0.0f;
             }
@@ -66,6 +68,7 @@ public class NetHitBox : MonoBehaviour
             swingSound.Play();
 
             isNetActivated = true;
+            playerNet.SetActive(true);
             netCatchPeriodTimer = 0.0f;
         }
 
@@ -94,6 +97,8 @@ public class NetHitBox : MonoBehaviour
                     catchSound.volume = volumeSFX;
                     catchSound.Play();
                     Destroy(raycastHit.collider.gameObject);
+
+                    GetComponent<PlayerWallet>().AddMoney(1); // TODO: ajuster en fct de c'est quoi le moth qu'on catch
                 }
             }
         }
