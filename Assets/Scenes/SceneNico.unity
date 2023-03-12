@@ -395,6 +395,13 @@ MonoBehaviour:
   mothlayerMasks:
     serializedVersion: 2
     m_Bits: 8
+  volumeSFX: 1
+  clips:
+  - {fileID: 8300000, guid: f27a20e0c308fa4418ae961efa3a09e6, type: 3}
+  - {fileID: 8300000, guid: f57e5b06caf2105449e4a0e665fc0a31, type: 3}
+  - {fileID: 8300000, guid: a02e026ce253b514698b4abab212ea36, type: 3}
+  - {fileID: 8300000, guid: 6dfe444a09f2fe54e99e8c09c20d6d75, type: 3}
+  - {fileID: 8300000, guid: 6c1c8625bef5f7c47aaa12cb3a6f937e, type: 3}
 --- !u!1 &1387983492
 GameObject:
   m_ObjectHideFlags: 0
