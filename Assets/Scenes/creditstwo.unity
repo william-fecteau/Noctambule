@@ -1315,7 +1315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8901283b81e62bb47a1d98357c894d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainClip: {fileID: 8300000, guid: 17b93024f52a9ce479658c0df19edf89, type: 3}
+  mainClip: {fileID: 8300000, guid: e0e3cf4828041924b98b012399654e75, type: 3}
   currentSong: {fileID: 0}
   volume: 1
 --- !u!1 &1010457143
@@ -2053,7 +2053,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 1628968151, guid: 3334485548ef277419bbc41c616d31e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
