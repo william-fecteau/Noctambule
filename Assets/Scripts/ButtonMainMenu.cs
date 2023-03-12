@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonTestScript : MonoBehaviour
+public class ButtonMainMenu : MonoBehaviour
 {
-    public string newGameScene;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +15,14 @@ public class ButtonTestScript : MonoBehaviour
     void Update()
     {
     }
-    public void StartGame()
+
+    public void StartScene(string sceneName)
     {
-        Debug.Log(newGameScene);
-        SceneManager.LoadScene(newGameScene);
-        Debug.Log("You have clicked the button!");
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
