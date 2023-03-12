@@ -19,11 +19,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementInput;
     
     // animation state
-    private const string PLAYER_IDLE  = "Player_idle";
+    private const string PLAYER_IDLE_L  = "Player_idle_l";
+    private const string PLAYER_IDLE_U  = "Player_idle_u";
+    private const string PLAYER_IDLE_R  = "Player_idle_r";
+    private const string PLAYER_IDLE_B  = "Player_idle_b";
     private const string PLAYER_RUN_L = "Player_run_l";
     private const string PLAYER_RUN_R = "Player_run_r";
     private const string PLAYER_RUN_U = "Player_run_u";
-    private const string PLAYER_RUN_D = "Player_run_d";
+    private const string PLAYER_RUN_B = "Player_run_b";
 
     private string currentAnimaton;
 
@@ -84,31 +87,24 @@ public class PlayerController : MonoBehaviour
         if(Mathf.Abs(vectRes.x) > Mathf.Abs(vectRes.y)) {
             if(vectRes.x>0) {
                 if(movementInput.magnitude > 0) ChangeAnimationState(PLAYER_RUN_R);
-                else ChangeAnimationState(PLAYER_IDLE);
+                else ChangeAnimationState(PLAYER_IDLE_R);
             } 
             else {
                 if(movementInput.magnitude > 0) ChangeAnimationState(PLAYER_RUN_L);
-                else ChangeAnimationState(PLAYER_IDLE);
+                else ChangeAnimationState(PLAYER_IDLE_L);
             }
         }
         else {
             if(vectRes.y>0) {
                 if(movementInput.magnitude > 0) ChangeAnimationState(PLAYER_RUN_U);
-                else ChangeAnimationState(PLAYER_IDLE);
+                else ChangeAnimationState(PLAYER_IDLE_U);
             } 
             else {
-                if(movementInput.magnitude > 0) ChangeAnimationState(PLAYER_RUN_D);
-                else ChangeAnimationState(PLAYER_IDLE);
+                if(movementInput.magnitude > 0) ChangeAnimationState(PLAYER_RUN_B);
+                else ChangeAnimationState(PLAYER_IDLE_B);
             }
         }
 
-        if(movementInput.magnitude > 0)
-        {
-
-        }
-        else {
-
-        }
         //Vector2 direction = (mouseScreenPosition  - (Vector2) transform.position).normalized;
         //transform.up = direction;
     }
