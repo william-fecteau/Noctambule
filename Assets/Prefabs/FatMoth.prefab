@@ -157,6 +157,7 @@ MonoBehaviour:
   maxSecBeforeDirectionChange: 3
   minSpeed: 1
   maxSpeed: 3
+  itemNeededToCatch: Purple net
 --- !u!61 &962903483910479526
 BoxCollider2D:
   m_ObjectHideFlags: 0

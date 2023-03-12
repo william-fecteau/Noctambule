@@ -60,6 +60,9 @@ public class ShopManager : MonoBehaviour
             playerWallet.SubtractMoney(upgrade.cost);
             upgrade.isOwned = true;
 
+            var player = GameObject.Find("Player").GetComponent<PlayerController>();
+            player.items.Add(upgrade.name);
+
             this.UpdateLimitedItem(upgrade.itemRef, upgrade);
         }
     }

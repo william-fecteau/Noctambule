@@ -78,6 +78,7 @@ public class NetHitBox : MonoBehaviour
 
     private void CatchMothsInReach()
     {
+
         Vector2 size = new Vector2(2, 2);
         float distance = 2.0f;
         float angle = 0.0f;
@@ -92,13 +93,16 @@ public class NetHitBox : MonoBehaviour
 
                 if (raycastHit.transform.TryGetComponent<BaseMoth>(out BaseMoth baseMoth))
                 {
+                    if (baseMoth.itemNeededToCatch != string.Empty && !playerController.items.Contains(baseMoth.itemNeededToCatch)) 
+                        continue;
+
+                    GetComponent<PlayerWallet>().AddMoney(baseMoth.money);
+
                     catchSound.clip = clips[0];
                     catchSound.loop = false;
                     catchSound.volume = volumeSFX;
                     catchSound.Play();
                     Destroy(raycastHit.collider.gameObject);
-
-                    GetComponent<PlayerWallet>().AddMoney(1); // TODO: ajuster en fct de c'est quoi le moth qu'on catch
                 }
             }
         }

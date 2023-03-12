@@ -16,8 +16,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidbody2d;
     private Vector2 movementInput;
 
+    public List<string> items;
+
     void Start()
     {
+        items = new List<string>();
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
 

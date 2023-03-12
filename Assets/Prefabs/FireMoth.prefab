@@ -157,6 +157,7 @@ MonoBehaviour:
   maxSecBeforeDirectionChange: 3
   minSpeed: 1.5
   maxSpeed: 4
+  itemNeededToCatch: Red net
 --- !u!61 &962903483910479526
 BoxCollider2D:
   m_ObjectHideFlags: 0
