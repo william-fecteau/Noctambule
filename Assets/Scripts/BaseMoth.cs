@@ -8,6 +8,8 @@ public class BaseMoth : MonoBehaviour
     [SerializeField] private float maxSecBeforeDirectionChange = 2.0f;
     [SerializeField] private float minSpeed = 0.5f;
     [SerializeField] private float maxSpeed = 1.5f;
+    public string itemNeededToCatch;
+    public int money;
 
     private Vector2 curDirection;
     private float directionChangeTimer;

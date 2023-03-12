@@ -14,11 +14,29 @@ public class PlayerController : MonoBehaviour
     private float dashingTimer = 0f;
     private float dashingCooldownTimer = 0f;
     private Rigidbody2D rigidbody2d;
+
+    private Animator animator;
     private Vector2 movementInput;
+    
+    // animation state
+    private const string PLAYER_IDLE_L  = "Player_idle_l";
+    private const string PLAYER_IDLE_U  = "Player_idle_u";
+    private const string PLAYER_IDLE_R  = "Player_idle_r";
+    private const string PLAYER_IDLE_B  = "Player_idle_b";
+    private const string PLAYER_RUN_L = "Player_run_l";
+    private const string PLAYER_RUN_R = "Player_run_r";
+    private const string PLAYER_RUN_U = "Player_run_u";
+    private const string PLAYER_RUN_B = "Player_run_b";
+
+    private string currentAnimaton;
+
+    public List<string> items;
 
     void Start()
     {
+        items = new List<string>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -55,12 +73,53 @@ public class PlayerController : MonoBehaviour
         movementInput = movementInput * speed * Time.fixedDeltaTime;
         rigidbody2d.MovePosition(rigidbody2d.position + movementInput);
 
-
         // Rotate towards mouse
-        Vector2 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = (mouseScreenPosition  - (Vector2) transform.position).normalized;
-        transform.up = direction;
+        float camOffsetX = Camera.main.pixelWidth/2;
+        float camOffsetY = Camera.main.pixelHeight/2;
+        Vector2 mouseScreenPosition = new Vector2(Input.mousePosition.x - camOffsetX,Input.mousePosition.y - camOffsetY );
+        Vector2 playerScreenPosition = Camera.main.WorldToScreenPoint(this.transform.position);
+
+        playerScreenPosition.x -= camOffsetX;
+        playerScreenPosition.y -= camOffsetY;
+
+        Vector2 vectRes = mouseScreenPosition - playerScreenPosition;
+
+        // check which direction to face, then if character is idle or not
+        if(Mathf.Abs(vectRes.x) > Mathf.Abs(vectRes.y)) {
+            if(vectRes.x>0) {
+                if(movementInput.magnitude > 0) ChangeAnimationState(PLAYER_RUN_R);
+                else ChangeAnimationState(PLAYER_IDLE_R);
+            } 
+            else {
+                if(movementInput.magnitude > 0) ChangeAnimationState(PLAYER_RUN_L);
+                else ChangeAnimationState(PLAYER_IDLE_L);
+            }
+        }
+        else {
+            if(vectRes.y>0) {
+                if(movementInput.magnitude > 0) ChangeAnimationState(PLAYER_RUN_U);
+                else ChangeAnimationState(PLAYER_IDLE_U);
+            } 
+            else {
+                if(movementInput.magnitude > 0) ChangeAnimationState(PLAYER_RUN_B);
+                else ChangeAnimationState(PLAYER_IDLE_B);
+            }
+        }
+
+        //Vector2 direction = (mouseScreenPosition  - (Vector2) transform.position).normalized;
+        //transform.up = direction;
     }
 
     public Vector2 GetNormalizedDirection() => movementInput;
+    
+    //=====================================================
+    // mini animation manager (shamelessly stolen)
+    //=====================================================
+    void ChangeAnimationState(string newAnimation)
+    {
+        if (currentAnimaton == newAnimation) return;
+
+        animator.Play(newAnimation);
+        currentAnimaton = newAnimation;
+    }
 }
