@@ -10,11 +10,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
+  - player
   - Moth
   - Water
   - UI
   - Player
   - Ground
+  - 
+  - shop
+  - 
   - 
   - 
   - 
