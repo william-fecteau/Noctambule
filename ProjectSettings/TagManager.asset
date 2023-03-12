@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - TileMapCollision
+  - Button
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
   - player
+  - Moth
   - Water
   - UI
   - Player
