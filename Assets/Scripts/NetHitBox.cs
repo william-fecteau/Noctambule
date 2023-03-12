@@ -97,6 +97,8 @@ public class NetHitBox : MonoBehaviour
                     catchSound.volume = volumeSFX;
                     catchSound.Play();
                     Destroy(raycastHit.collider.gameObject);
+
+                    GetComponent<PlayerWallet>().AddMoney(1); // TODO: ajuster en fct de c'est quoi le moth qu'on catch
                 }
             }
         }
