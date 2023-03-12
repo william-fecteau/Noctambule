@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class FootStep : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class FootStep : MonoBehaviour
     [SerializeField] private AudioClip[] playlist;
     [SerializeField] private AudioClip randomClip;
     [SerializeField] private AudioSource currentSong;
-    [SerializeField] private float volume = 0.6f;
+    [SerializeField] private float volume = 1.0f;
+    [SerializeField] private TilemapCollider2D tilemap;
     GameObject player;
     void Start()
     {
@@ -16,20 +18,26 @@ public class FootStep : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         currentSong = new AudioSource();
         currentSong = gameObject.AddComponent<AudioSource>();
+        Debug.Log(tilemap);
+        Debug.Log(tilemap.IsTouching(player.GetComponent<BoxCollider2D>()));
+
     }
 
     void Update()
     {
-        //this.buttonPress(isPlayerOnButton);
         if (isPlayerOnButton)
         {
             if (!currentSong.isPlaying)
             {
-                randomClip = playlist[Random.Range(0, playlist.Length - 1)];
-                currentSong.clip = randomClip;
-                currentSong.loop = false;
-                currentSong.volume = volume;
-                currentSong.Play();
+                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+                {
+                    randomClip = playlist[Random.Range(0, playlist.Length - 1)];
+                    currentSong.clip = randomClip;
+                    currentSong.loop = false;
+                    currentSong.volume = volume;
+                    currentSong.Play();
+                }
+                
             }
         }
         if (!currentSong.isPlaying)
