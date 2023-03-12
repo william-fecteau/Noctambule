@@ -71,7 +71,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4578599140896f5469470a8bb01ca593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mothPrefab: {fileID: 962903483910479576, guid: de8bdb4fde015d34f9264017b30cf64b, type: 3}
+  baseMothPrefab: {fileID: 962903483910479576, guid: de8bdb4fde015d34f9264017b30cf64b, type: 3}
+  fireMothPrefab: {fileID: 962903483910479576, guid: dbfa1fa508adefb45b6909ee7e03a869, type: 3}
+  fatMothPrefab: {fileID: 962903483910479576, guid: b299c179b79ab7541b6c8a7cff63828d, type: 3}
+  fastMothPrefab: {fileID: 962903483910479576, guid: 6f80d418e629be3498de942ba75bbdad, type: 3}
   minTimeBeforeSpawnSec: 1
   maxTimeBeforeSpawnSec: 2
   spawnCap: 10
+  baseMothSpawnRate: 0.8
+  fireMothSpawnRate: 0.2
+  fatMothSpawnRate: 0.2
+  fastMothSpawnRate: 0.2

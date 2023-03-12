@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSecBeforeDirectionChange: 0.2
-  maxSecBeforeDirectionChange: 0.8
-  minSpeed: 0.5
-  maxSpeed: 1.5
+  maxSecBeforeDirectionChange: 1
+  minSpeed: 0.8
+  maxSpeed: 2
 --- !u!61 &962903483910479526
 BoxCollider2D:
   m_ObjectHideFlags: 0

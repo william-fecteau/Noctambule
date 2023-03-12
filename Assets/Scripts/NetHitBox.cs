@@ -7,7 +7,16 @@ public class NetHitBox : MonoBehaviour
     [SerializeField] private float netCooldownSec = 1.0f;
     [SerializeField] private float netCatchPeriodSec = 0.2f;
     [SerializeField] private LayerMask mothlayerMasks;
+    [SerializeField] private float volumeSFX = 1;
+    [SerializeField] private GameObject playerNet;
 
+    //0 is catch
+    //1-4 is swing
+    [SerializeField] private AudioClip[] clips;
+
+    private AudioClip clip;
+    private AudioSource catchSound;
+    private AudioSource swingSound;
     private float netCooldownTimer = 0.0f;
     private float netCatchPeriodTimer = 0.0f;
     private bool isNetActivated = false;
@@ -19,6 +28,11 @@ public class NetHitBox : MonoBehaviour
     private void Start()
     {
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        catchSound = new AudioSource();
+        swingSound = new AudioSource();
+
+        swingSound = gameObject.AddComponent<AudioSource>();
+        catchSound = gameObject.AddComponent<AudioSource>();
     }
 
     private void Update() {
@@ -30,6 +44,7 @@ public class NetHitBox : MonoBehaviour
             if (netCatchPeriodTimer > netCatchPeriodSec)
             {
                 isNetActivated = false;
+                playerNet.SetActive(false);
                 isNetInCooldown = true;
                 netCooldownTimer = 0.0f;
             }
@@ -45,9 +60,20 @@ public class NetHitBox : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
+            //Sorry need audio
+            
+            swingSound.clip = clips[Random.Range(1, clips.Length - 1)];
+            swingSound.loop = false;
+            swingSound.volume = volumeSFX;
+            swingSound.Play();
+
             isNetActivated = true;
+            playerNet.SetActive(true);
             netCatchPeriodTimer = 0.0f;
         }
+
+        
+
     }
 
     private void CatchMothsInReach()
@@ -66,7 +92,13 @@ public class NetHitBox : MonoBehaviour
 
                 if (raycastHit.transform.TryGetComponent<BaseMoth>(out BaseMoth baseMoth))
                 {
+                    catchSound.clip = clips[0];
+                    catchSound.loop = false;
+                    catchSound.volume = volumeSFX;
+                    catchSound.Play();
                     Destroy(raycastHit.collider.gameObject);
+
+                    GetComponent<PlayerWallet>().AddMoney(1); // TODO: ajuster en fct de c'est quoi le moth qu'on catch
                 }
             }
         }
