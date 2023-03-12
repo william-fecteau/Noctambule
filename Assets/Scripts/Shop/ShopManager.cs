@@ -21,16 +21,15 @@ public class ShopManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        GameObject gameManagerObject = GameObject.Find("Player");
-        if (gameManagerObject != null) {
-            playerWallet = gameManagerObject.GetComponent<PlayerWallet>();
-        }
-
         shopUI.SetActive(false);
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start() {
+        GameObject gameManagerObject = GameObject.Find("Player");
+        playerWallet = gameManagerObject.GetComponent<PlayerWallet>();
+
+
         foreach (Upgrade upgrade in upgrades) {
             GameObject item = Instantiate(itemPrefab, shopContent);
 
@@ -85,7 +84,8 @@ public class ShopManager : MonoBehaviour
         shopUI.SetActive(!shopUI.activeSelf);
     }
 
-    private void OnGUI() {
+    private void OnGUI()
+    {
         coinText.text = "Coins: " + playerWallet.currentMoney;
     }
 
