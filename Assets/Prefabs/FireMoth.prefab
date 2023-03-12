@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3fa9ad07a817b49b8a50dc326467be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSecBeforeDirectionChange: 0.2
-  maxSecBeforeDirectionChange: 0.8
-  minSpeed: 0.5
-  maxSpeed: 1.5
+  minSecBeforeDirectionChange: 2
+  maxSecBeforeDirectionChange: 3
+  minSpeed: 1.5
+  maxSpeed: 4
 --- !u!61 &962903483910479526
 BoxCollider2D:
   m_ObjectHideFlags: 0
