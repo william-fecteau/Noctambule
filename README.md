@@ -1,4 +1,7 @@
 # Noctambule
+This game was made in 48h during the [Sherbrooke Game Jam 2023](https://itch.io/jam/game-jam-sherbrooke-2023). Our submission is [here](https://th3bos5.itch.io/noctambule)
+
+# Description
 
 You're a kid on a vacation trip in the woods, but you get real bored and can't catch any sleep, so you turned around and started catching cool night bugs instead! Explore the wilderness around you to disturb the quiet night life of the forest, get moths and sell em' to the local racoon to get better bug-catching equipment and gear and hustle up your bug-catching game by automating your newly discovered hobby, become the local racoon mafia boss you always were meant to be, today the forest, tomorrow the earth...
 
